@@ -10,10 +10,10 @@ public class FadeIn : MonoBehaviour
     float start;
     float end;
     float time = 0f;
-    bool isPlaying = false;
+    public bool isPlaying = false;
     public bool fadeselect;
 
-    void Awake()
+    public void Awake()
     {
         fadeImg = GetComponent<Image>();
         if (fadeselect != false)

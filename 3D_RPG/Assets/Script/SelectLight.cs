@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SelectLight : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class SelectLight : MonoBehaviour
     public GameObject night;
     public GameObject wizard;
     public static int characterNum = 0;
+    public Image Fadeout;
+
+    void Start()
+    {
+        Invoke("HideFadeOut", 1f);
+    }
 
     public void SelectOneCharacter()
     {
@@ -20,6 +27,7 @@ public class SelectLight : MonoBehaviour
             playerOne.SetActive(true);
             night.SetActive(true);
             Onecheck = true;
+            characterNum = 0;
             if (Twocheck == true)
             {
                 playerTwo.SetActive(false);
@@ -57,8 +65,23 @@ public class SelectLight : MonoBehaviour
         }
     }
 
+    void HideFadeOut()
+    {
+        Fadeout.gameObject.SetActive(false);
+    }
+
+    void NextMove()
+    {
+        SceneManager.LoadScene("Stage01");
+    }
+
     public void NextStage()
     {
-        
+        Fadeout.gameObject.SetActive(true);
+        FadeIn fadein = GameObject.Find("FadeOut").GetComponent<FadeIn>();
+        fadein.fadeselect = false;
+        fadein.Awake();
+
+        Invoke("NextMove", 1f);
     }
 }
