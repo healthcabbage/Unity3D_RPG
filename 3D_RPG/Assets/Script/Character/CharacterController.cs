@@ -17,12 +17,6 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        Run();
-        Attack();
-    }
-
-    void Run()
-    {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
 
@@ -33,20 +27,10 @@ public class CharacterController : MonoBehaviour
         transform.LookAt(transform.position + movement);
 
         anim.SetBool("isRun", movement != Vector3.zero);
-    }
 
-    void Attack()
-    {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("확인");
-            anim.SetBool("isAttack", true);
-            Invoke("Idle", 1f);
+            anim.SetTrigger("isAttack");
         }
-    }
-
-    void Idle()
-    {
-        anim.SetBool("isAttack", false);
     }
 }
