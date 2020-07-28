@@ -5,13 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject target;
-
     public Transform target2;
-
     int chNum = 0;
     // Start is called before the first frame update
     public Vector3 offset;
     public float FollowSpeed;
+    public float zoomSpeed;
+    public float rotateSpeed;
 
     void Start()
     {
@@ -20,12 +20,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        Vector3 CamPos = target2.position + offset;
-
-        transform.position = Vector3.Lerp(transform.position, CamPos, FollowSpeed * Time.deltaTime);
+        FollowCharacter();
     }
 
-    void Seach()
+    private void Seach()
     {
         chNum = SelectLight.characterNum;
         if (chNum == 0)
@@ -36,6 +34,25 @@ public class CameraController : MonoBehaviour
         else if(chNum == 1)
         {
 
+        }
+    }
+
+    private void FollowCharacter()
+    {
+        Vector3 CamPos = target2.position + offset;
+        transform.position = Vector3.Lerp(transform.position, CamPos, FollowSpeed * Time.deltaTime);
+    }
+
+    private void Rotate()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            Vector3 rot = transform.rotation.eulerAngles;
+            rot.y += Input.GetAxis("Mouse X") * rotateSpeed;
+            rot.x += -1 * Input.GetAxis("Mouse Y") * rotateSpeed;
+            Quaternion q = Quaternion.Euler(rot);
+            q.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, 2f);
         }
     }
 }

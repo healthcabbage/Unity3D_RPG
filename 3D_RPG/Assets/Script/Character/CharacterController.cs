@@ -9,28 +9,49 @@ public class CharacterController : MonoBehaviour
     float vAxis;
     Vector3 movement;
     Animator anim;
+    private bool atk = false;
+    private bool walk = false;
 
     void Start()
     {
         anim = GetComponent<Animator>();
     }
 
+    [System.Obsolete]
     void Update()
     {
-        hAxis = Input.GetAxisRaw("Horizontal");
-        vAxis = Input.GetAxisRaw("Vertical");
-
-        movement = new Vector3(hAxis, 0, vAxis).normalized;
-
-        transform.position += movement * speed * Time.deltaTime;
-
-        transform.LookAt(transform.position + movement);
-
-        anim.SetBool("isRun", movement != Vector3.zero);
-
-        if(Input.GetMouseButtonDown(0))
+        if (!atk)
         {
-            anim.SetTrigger("isAttack");
+            hAxis = Input.GetAxisRaw("Horizontal");
+            vAxis = Input.GetAxisRaw("Vertical");
+
+            movement = new Vector3(hAxis, 0, vAxis).normalized;
+
+            transform.position += movement * speed * Time.deltaTime;
+
+            transform.LookAt(transform.position + movement);
+
+            anim.SetBool("isRun", movement != Vector3.zero);
+
+            walk = true;
+
+            if (movement != Vector3.zero)
+            {
+                walk = false;
+            }
+        }
+        if (walk != false)
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                anim.SetTrigger("isAttack");
+                atk = true;
+            }
+        }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("IDLE"))
+        {
+           atk = false;
         }
     }
 }
