@@ -12,6 +12,12 @@ public class CharacterController : MonoBehaviour
     private bool atk = false;
     private bool walk = false;
 
+    private void Awake()
+    {
+        // Cursor.visible = true;
+        // Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -35,12 +41,12 @@ public class CharacterController : MonoBehaviour
 
             walk = true;
 
-            if (movement != Vector3.zero)
+            if (movement == Vector3.zero)
             {
                 walk = false;
             }
         }
-        if (walk != false)
+        if (walk != true)
         {
             if(Input.GetMouseButtonDown(0))
             {
@@ -49,7 +55,7 @@ public class CharacterController : MonoBehaviour
             }
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("IDLE"))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.IDLE"))
         {
            atk = false;
         }

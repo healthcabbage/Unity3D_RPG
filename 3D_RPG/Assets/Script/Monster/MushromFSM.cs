@@ -29,7 +29,14 @@ public class MushromFSM : MonoBehaviour
 
     private float attackDelay = 2f;
     private float attackTimer = 0;
+    public SkinnedMeshRenderer meshRenderer;
+    private Color originColor;
 
+    void Awake()
+    {
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        originColor = meshRenderer.material.color;
+    }
     void Start()
     {
         EnemyAni = GetComponent<Animator>();
@@ -55,6 +62,9 @@ public class MushromFSM : MonoBehaviour
                 break;
             case State.Return:
                 ReturnState();
+                break;
+            case State.Demage:
+                DemageState();
                 break;
         }
     }
@@ -116,15 +126,25 @@ public class MushromFSM : MonoBehaviour
 
     void ReturnState()
     {
-        Mush.transform.position = Vector3.MoveTowards(transform.position, returnPosition, moveSpeed * Time.deltaTime);
-        Quaternion lookRotation = Quaternion.LookRotation(returnPosition);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation,rotAnglePerSecond * Time.deltaTime);
-        
-        EnemyAni.SetTrigger("isRun");
-        if (transform.position == returnPosition)
+        Vector3 nowPos = transform.position;
+        if (nowPos != returnPosition)
+        {
+            Mush.transform.position = Vector3.MoveTowards(nowPos, returnPosition, moveSpeed * Time.deltaTime);
+            Quaternion lookRotation = Quaternion.LookRotation(returnPosition - nowPos);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * rotAnglePerSecond);        
+            EnemyAni.SetTrigger("isRun");
+        }
+        else
         {
             ChangeState(State.Idle);
+            Debug.Log("Return->Idle");
         }
+    }
+
+    void DemageState()
+    {
+        EnemyAni.SetTrigger("isHit");
+        StartCoroutine("OnHitColor");
     }
 
     void TurnToDestination()
@@ -157,9 +177,18 @@ public class MushromFSM : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Weapon")
         {
-            Debug.Log("Hit");
+            ChangeState(State.Demage);
         }
+    }
+
+    private IEnumerator OnHitColor()
+    {
+        meshRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        meshRenderer.material.color = originColor;
+        yield return new WaitForSeconds(3f);
+        ChangeState(State.Attack);
     }
 }
