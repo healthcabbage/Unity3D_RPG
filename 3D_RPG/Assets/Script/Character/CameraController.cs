@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     public float FollowSpeed;
     public float zoomSpeed;
     public float rotateSpeed;
+    
 
     void Start()
     {

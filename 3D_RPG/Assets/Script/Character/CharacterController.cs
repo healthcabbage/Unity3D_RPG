@@ -11,6 +11,7 @@ public class CharacterController : MonoBehaviour
     Animator anim;
     private bool atk = false;
     private bool walk = false;
+    public GameObject weapon;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class CharacterController : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
+
         if (!atk)
         {
             hAxis = Input.GetAxisRaw("Horizontal");
@@ -40,6 +42,7 @@ public class CharacterController : MonoBehaviour
             anim.SetBool("isRun", movement != Vector3.zero);
 
             walk = true;
+            weapon.GetComponent<BoxCollider>().enabled = false;
 
             if (movement == Vector3.zero)
             {
@@ -50,6 +53,7 @@ public class CharacterController : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                weapon.GetComponent<BoxCollider>().enabled = true;
                 anim.SetTrigger("isAttack");
                 atk = true;
             }

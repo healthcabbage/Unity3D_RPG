@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Weapon
+  - Mushroom
   layers:
   - Default
   - TransparentFX
@@ -14,11 +15,11 @@ TagManager:
   - UI
   - 
   - 
-  - Player
-  - Mushroom
-  - Slime
-  - Dragon
   - Weapon
+  - Enemy
+  - 
+  - 
+  - 
   - 
   - 
   - 

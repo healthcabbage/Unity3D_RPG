@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MushromFSM : MonoBehaviour
+public class MushromFSM : MushState
 {
     public enum State
     {
@@ -13,10 +13,12 @@ public class MushromFSM : MonoBehaviour
         Demage,
         Dead
     }
+    
     public State currentState = State.Idle;
     Animator EnemyAni; //몬스터 애니메이터
     public Transform player; //플레이어 거리 가져오기
     public GameObject Mush;
+    public GameObject Night;
 
     private float chaseDistnace = 9f; //플레이어를 향해 몬스터가 추척을 시작할 거리
     private float attackDistance = 2.5f; //플레이어가 안쪽으로 들어오게 되면 공격을 시작
@@ -66,6 +68,9 @@ public class MushromFSM : MonoBehaviour
             case State.Demage:
                 DemageState();
                 break;
+            case State.Dead:
+                DeadState();
+                break;
         }
     }
 
@@ -106,6 +111,7 @@ public class MushromFSM : MonoBehaviour
 
     void AttackState()
     {
+        gameObject.GetComponent<BoxCollider>().enabled = true;
         if (GetDistanceFromPlayer() > reChaseDistance)
         {
             ChangeState(State.Chase);
@@ -122,6 +128,10 @@ public class MushromFSM : MonoBehaviour
 
             attackTimer += Time.deltaTime;
         }
+        if (hp <= 0)
+        {
+            ChangeState(State.Dead);
+        }
     }
 
     void ReturnState()
@@ -130,11 +140,10 @@ public class MushromFSM : MonoBehaviour
         if (nowPos != returnPosition)
         {
             Mush.transform.position = Vector3.MoveTowards(nowPos, returnPosition, moveSpeed * Time.deltaTime);
-            Quaternion lookRotation = Quaternion.LookRotation(returnPosition - nowPos);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * rotAnglePerSecond);        
+            transform.LookAt(returnPosition);      
             EnemyAni.SetTrigger("isRun");
         }
-        else
+        if (Vector3.Distance(transform.position, returnPosition) <= 0f)
         {
             ChangeState(State.Idle);
             Debug.Log("Return->Idle");
@@ -144,7 +153,15 @@ public class MushromFSM : MonoBehaviour
     void DemageState()
     {
         EnemyAni.SetTrigger("isHit");
-        StartCoroutine("OnHitColor");
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        StartCoroutine("OnHitColor");   
+    }
+
+    void DeadState()
+    {
+        moveSpeed = 0;
+        Mush.GetComponent<BoxCollider>().enabled = false;
+        EnemyAni.SetTrigger("isDead");
     }
 
     void TurnToDestination()
@@ -173,12 +190,15 @@ public class MushromFSM : MonoBehaviour
     void Search()
     {
         player = GameObject.Find("Ekard(Clone)").transform;
+        Night = GameObject.Find("Ekard(Clone)");
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider weapon)
     {
-        if(other.gameObject.tag == "Weapon")
+        if(weapon.gameObject.tag == "Weapon")
         {
+            int attk = Night.GetComponent<Night>().atk;
+            MushHit(attk);
             ChangeState(State.Demage);
         }
     }
@@ -188,7 +208,7 @@ public class MushromFSM : MonoBehaviour
         meshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         meshRenderer.material.color = originColor;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         ChangeState(State.Attack);
     }
 }
