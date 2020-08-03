@@ -128,10 +128,6 @@ public class MushromFSM : MushState
 
             attackTimer += Time.deltaTime;
         }
-        if (hp <= 0)
-        {
-            ChangeState(State.Dead);
-        }
     }
 
     void ReturnState()
@@ -199,6 +195,7 @@ public class MushromFSM : MushState
         {
             int attk = Night.GetComponent<Night>().atk;
             MushHit(attk);
+            
             ChangeState(State.Demage);
         }
     }
@@ -208,7 +205,15 @@ public class MushromFSM : MushState
         meshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         meshRenderer.material.color = originColor;
-        yield return new WaitForSeconds(1f);
-        ChangeState(State.Attack);
+        yield return new WaitForSeconds(0.2f);
+        if (hp > 0)
+        {
+            ChangeState(State.Attack);
+        }
+        else if (hp <= 0)
+        {
+            ChangeState(State.Dead);
+        }
+        
     }
 }
