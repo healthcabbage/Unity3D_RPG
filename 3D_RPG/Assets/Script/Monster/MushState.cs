@@ -1,27 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MushState : MonoBehaviour
 {
-    public float StartHealth;
     public int hp;
     public int atk;
     public GameObject DemageText;
-    public GameObject TextPos;
+    public Transform hudPos;
     public GameObject HealthBar;
-    public GameObject Player;
+    public GameObject HitEffect;
+    public Transform HitPos;
 
     public void MushHit(int Demage)
     {
         if (hp > 0)
         {
-            GameObject dmgText = Instantiate(DemageText, TextPos.transform.position, Quaternion.identity);
-            dmgText.GetComponent<Text>().text = Demage.ToString();
+            GameObject hudText = Instantiate(DemageText);
+            hudText.GetComponent<DamageText>().damage = Demage;
+            hudText.transform.position = hudPos.position;
+            hudText.transform.rotation = Quaternion.Euler(0, -90, 0);
+
+            CreateHitEffect();
+
             hp -= Demage;
             //HealthBar.GetComponent<Image>().fillAmount = hp / StartHealth;   
-            Destroy(dmgText, 1f);
         }       
+    }
+
+    void CreateHitEffect()
+    {
+        Instantiate(HitEffect);
+        HitEffect.transform.position = HitPos.position;
     }
 }

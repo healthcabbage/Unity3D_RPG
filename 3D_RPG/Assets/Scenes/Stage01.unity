@@ -161,12 +161,6 @@ Transform:
   m_Father: {fileID: 547106299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &294741246 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3994432079352347824, guid: 8edb2fa3dc2112246b53357be701f37b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1319962828}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &325324080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4243724423293762, guid: c07f24e35f07ce74ba43afa35d48adf7,
@@ -1207,6 +1201,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1895834594}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1176069196 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1176069196, guid: 8edb2fa3dc2112246b53357be701f37b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1319962828}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1212400208 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4243724423293762, guid: c07f24e35f07ce74ba43afa35d48adf7,
@@ -1281,6 +1281,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1176069196, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176069196, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1382258774799692, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
       propertyPath: m_Name
       value: MushroomMonster
@@ -1329,54 +1337,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5000122535554479734, guid: 8edb2fa3dc2112246b53357be701f37b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6089003172693505129, guid: 8edb2fa3dc2112246b53357be701f37b,
         type: 3}
-      propertyPath: TextPos
+      propertyPath: HitPos
       value: 
-      objectReference: {fileID: 294741246}
+      objectReference: {fileID: 1176069196}
     - target: {fileID: 6089003172693505129, guid: 8edb2fa3dc2112246b53357be701f37b,
         type: 3}
-      propertyPath: DemageText
+      propertyPath: HitEffect
       value: 
-      objectReference: {fileID: 3439162036631886830, guid: 1c23e2b8db398074ba91577c5094cf80,
-        type: 3}
-    m_RemovedComponents:
-    - {fileID: 4511642501774595824, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
+      objectReference: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
 --- !u!1 &1401665905
 GameObject:

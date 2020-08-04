@@ -33,7 +33,7 @@ public class Night : MonoBehaviour
     {
         if (Enemy.gameObject.tag == "Mushroom")
         {
-            Mush.GetComponent<MushState>().MushHit(atk);
+            Mush.GetComponent<MushromFSM>().MushHit(atk);
             Debug.Log("Demage");
         }
     }

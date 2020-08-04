@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1176069195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176069196}
+  m_Layer: 0
+  m_Name: HitEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1176069196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176069195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.11, y: 1.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4162405467240868}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1382258774799692
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +41,6 @@ GameObject:
   - component: {fileID: 4162405467240868}
   - component: {fileID: 4565567324259897533}
   - component: {fileID: 6089003172693505129}
-  - component: {fileID: 4511642501774595824}
   - component: {fileID: 5029758672224574180}
   - component: {fileID: -2754061564317842323}
   m_Layer: 0
@@ -35,6 +64,7 @@ Transform:
   - {fileID: 4627633284843166}
   - {fileID: 4110470248468810}
   - {fileID: 5000122535554479734}
+  - {fileID: 1176069196}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
@@ -71,30 +101,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 20
   atk: 0
-  DemageText: {fileID: 0}
-  TextPos: {fileID: 0}
+  DemageText: {fileID: 1954952303118356973, guid: 89593462336623641a450bb80cca1873,
+    type: 3}
+  hudPos: {fileID: 5000122535554479734}
+  HealthBar: {fileID: 0}
+  HitEffect: {fileID: 0}
+  HitPos: {fileID: 0}
   currentState: 0
   player: {fileID: 0}
   Mush: {fileID: 0}
   Night: {fileID: 0}
   meshRenderer: {fileID: 0}
---- !u!114 &4511642501774595824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382258774799692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b4aca2bb29d074da940a21f05d7cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  atk: 0
-  DemageText: {fileID: 3439162036631886830, guid: 1c23e2b8db398074ba91577c5094cf80,
-    type: 3}
-  TextPos: {fileID: 3994432079352347824}
+  StartHealth: 0
 --- !u!54 &5029758672224574180
 Rigidbody:
   m_ObjectHideFlags: 0

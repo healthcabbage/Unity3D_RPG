@@ -33,6 +33,7 @@ public class MushromFSM : MushState
     private float attackTimer = 0;
     public SkinnedMeshRenderer meshRenderer;
     private Color originColor;
+    public float StartHealth;
 
     void Awake()
     {
@@ -193,9 +194,9 @@ public class MushromFSM : MushState
     {
         if(weapon.gameObject.tag == "Weapon")
         {
-            int attk = Night.GetComponent<Night>().atk;
-            MushHit(attk);
-            
+            int hit = Night.GetComponent<Night>().atk;
+            MushHit(hit);
+            DemageText.transform.LookAt(player.position);
             ChangeState(State.Demage);
         }
     }
@@ -216,4 +217,5 @@ public class MushromFSM : MushState
         }
         
     }
+
 }
