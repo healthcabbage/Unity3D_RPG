@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MushState : MonoBehaviour
 {
+    public int maxhp;
     public int hp;
     public int atk;
     public GameObject DemageText;
@@ -11,7 +13,9 @@ public class MushState : MonoBehaviour
     public GameObject HealthBar;
     public GameObject HitEffect;
     public Transform HitPos;
-
+    public GameObject Mush;
+    public Slider hpSlider;
+    
     public void MushHit(int Demage)
     {
         if (hp > 0)
@@ -23,8 +27,7 @@ public class MushState : MonoBehaviour
 
             CreateHitEffect();
 
-            hp -= Demage;
-            //HealthBar.GetComponent<Image>().fillAmount = hp / StartHealth;   
+            hp -= Demage; 
         }       
     }
 
@@ -32,5 +35,11 @@ public class MushState : MonoBehaviour
     {
         Instantiate(HitEffect);
         HitEffect.transform.position = HitPos.position;
+    }
+
+    public void DeadMush()
+    {
+        Destroy(this.gameObject);
+        Destroy(hpSlider);
     }
 }

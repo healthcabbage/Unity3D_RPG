@@ -17,7 +17,6 @@ public class MushromFSM : MushState
     public State currentState = State.Idle;
     Animator EnemyAni; //몬스터 애니메이터
     public Transform player; //플레이어 거리 가져오기
-    public GameObject Mush;
     public GameObject Night;
 
     private float chaseDistnace = 9f; //플레이어를 향해 몬스터가 추척을 시작할 거리
@@ -159,6 +158,7 @@ public class MushromFSM : MushState
         moveSpeed = 0;
         Mush.GetComponent<BoxCollider>().enabled = false;
         EnemyAni.SetTrigger("isDead");
+        Invoke("DeadMush", 3f);
     }
 
     void TurnToDestination()
@@ -182,6 +182,9 @@ public class MushromFSM : MushState
     void Update()
     {
         UpdateState();
+
+        transform.position = Mush.transform.position;
+        hpSlider.value = Mathf.Lerp(hpSlider.value, (float)hp / (float)maxhp, Time.deltaTime * 5f);
     }
 
     void Search()
