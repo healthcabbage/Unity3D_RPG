@@ -7,16 +7,20 @@ public class CharacterController : MonoBehaviour
     public float speed;
     float hAxis;
     float vAxis;
+
+    bool fDown;
+    bool idown;
+
+    bool isFireReady;
+    public Weapon weapon;
     Vector3 movement;
     Animator anim;
-    private bool atk = false;
-    private bool walk = false;
-    public GameObject weapon;
+    float fireDelay;
+    public InventoryUI inventory;
 
     private void Awake()
     {
-        // Cursor.visible = true;
-        // Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     void Start()
@@ -27,41 +31,52 @@ public class CharacterController : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
+        GetInput();
+        Move();
+        Turn();
+        Attack();
+        Inventory();
+    }
 
-        if (!atk)
+    void GetInput()
+    {
+        hAxis = Input.GetAxisRaw("Horizontal");
+        vAxis = Input.GetAxisRaw("Vertical");
+        fDown = Input.GetButtonDown("Attack");
+        idown = Input.GetButtonDown("Inven");
+    }
+
+    void Move()
+    {
+        movement = new Vector3(hAxis, 0, vAxis).normalized;
+        transform.position += movement * speed * Time.deltaTime;
+        anim.SetBool("isRun", movement != Vector3.zero);
+        if (fDown)
         {
-            hAxis = Input.GetAxisRaw("Horizontal");
-            vAxis = Input.GetAxisRaw("Vertical");
-
-            movement = new Vector3(hAxis, 0, vAxis).normalized;
-
-            transform.position += movement * speed * Time.deltaTime;
-
-            transform.LookAt(transform.position + movement);
-
-            anim.SetBool("isRun", movement != Vector3.zero);
-
-            walk = true;
-            weapon.GetComponent<BoxCollider>().enabled = false;
-
-            if (movement == Vector3.zero)
-            {
-                walk = false;
-            }
+            
         }
-        if (walk != true)
-        {
-            if(Input.GetMouseButtonDown(0))
-            {
-                weapon.GetComponent<BoxCollider>().enabled = true;
-                anim.SetTrigger("isAttack");
-                atk = true;
-            }
-        }
+    }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.IDLE"))
+    void Turn()
+    {
+        transform.LookAt(transform.position + movement);      
+    }
+
+    void Attack()
+    {
+        if (fDown)
+        {   
+            movement = Vector3.zero;
+            weapon.Use();
+            anim.SetTrigger("isAttack");
+        }
+    }
+
+    void Inventory()
+    {
+        if (idown)
         {
-           atk = false;
+            inventory.Open();
         }
     }
 }

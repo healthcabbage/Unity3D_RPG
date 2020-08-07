@@ -38,6 +38,7 @@ public class MushromFSM : MushState
     {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         originColor = meshRenderer.material.color;
+        hp = maxhp;
     }
     void Start()
     {

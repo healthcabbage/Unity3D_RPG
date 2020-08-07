@@ -19,6 +19,7 @@ public class Night : MonoBehaviour
     {
         night_ani = GetComponent<Animator>();
         Mush = GameObject.Find("MushroomMonster");
+        hp = Maxhp;
     }
     void Update()
     {

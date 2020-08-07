@@ -1286,6 +1286,11 @@ PrefabInstance:
       propertyPath: atk
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6089003172693505129, guid: 8edb2fa3dc2112246b53357be701f37b,
+        type: 3}
+      propertyPath: hp
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7165662624840352366, guid: 8edb2fa3dc2112246b53357be701f37b,
         type: 3}
       propertyPath: m_RootOrder
