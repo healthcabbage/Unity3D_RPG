@@ -86,6 +86,7 @@ public class MushromFSM : MushState
 
     void IdleState()
     {
+        returnPosition = Mush.transform.position;
         if (GetDistanceFromPlayer() < chaseDistnace)
         {
             ChangeState(State.Chase);
@@ -221,5 +222,7 @@ public class MushromFSM : MushState
         }
         
     }
+
+    
 
 }
