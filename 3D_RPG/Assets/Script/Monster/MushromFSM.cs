@@ -45,7 +45,6 @@ public class MushromFSM : MushState
         EnemyAni = GetComponent<Animator>();
         ChangeState(State.Idle);
         Mush = GameObject.Find("MushroomMonster");
-        returnPosition = Mush.transform.position;
         
         Invoke("Search", 0f);
     }
@@ -161,6 +160,7 @@ public class MushromFSM : MushState
         Mush.GetComponent<BoxCollider>().enabled = false;
         EnemyAni.SetTrigger("isDead");
         Invoke("DeadMush", 3f);
+        //사망 후 아이템 드롭하기
     }
 
     void TurnToDestination()

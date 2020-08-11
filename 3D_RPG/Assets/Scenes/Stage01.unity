@@ -573,15 +573,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDB:
-  - itemType: 0
-    itemName: 
-    itemPrefab: {fileID: 0}
   - itemType: 1
-    itemName: 
-    itemPrefab: {fileID: 0}
-  - itemType: 1
-    itemName: 
-    itemPrefab: {fileID: 0}
+    itemName: Goldcoin
+    itemvalue: 0
+    itemPrice: 0
+    itemImage: {fileID: 0}
 --- !u!4 &569289017
 Transform:
   m_ObjectHideFlags: 0
