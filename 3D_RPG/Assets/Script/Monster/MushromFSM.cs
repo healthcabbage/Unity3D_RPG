@@ -32,7 +32,6 @@ public class MushromFSM : MushState
     private float attackTimer = 0;
     public SkinnedMeshRenderer meshRenderer;
     private Color originColor;
-    public float StartHealth;
 
     void Awake()
     {
@@ -159,8 +158,7 @@ public class MushromFSM : MushState
         moveSpeed = 0;
         Mush.GetComponent<BoxCollider>().enabled = false;
         EnemyAni.SetTrigger("isDead");
-        Invoke("DeadMush", 3f);
-        //사망 후 아이템 드롭하기
+        Invoke("DeadMush", 2f);
     }
 
     void TurnToDestination()
@@ -220,9 +218,6 @@ public class MushromFSM : MushState
         {
             ChangeState(State.Dead);
         }
-        
     }
-
-    
 
 }

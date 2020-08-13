@@ -11,16 +11,19 @@ public class CharacterController : MonoBehaviour
     bool fDown;
     bool idown;
 
-    bool isFireReady;
+    bool isAttackReady = true; //다시 공격준비 완료
+    bool ComboReady = false;
     public Weapon weapon;
     Vector3 movement;
     Animator anim;
-    float fireDelay;
     public InventoryUI inventory;
+
+    float attackDelay; //공격 딜레이
+    float ComboTime;
+    float ComboDelay;
 
     private void Awake()
     {
-
     }
 
     void Start()
@@ -28,7 +31,6 @@ public class CharacterController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    [System.Obsolete]
     void Update()
     {
         GetInput();
@@ -43,18 +45,19 @@ public class CharacterController : MonoBehaviour
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxisRaw("Vertical");
         fDown = Input.GetButtonDown("Attack");
-        idown = Input.GetButtonDown("Inven");
+        idown = Input.GetButtonDown("Inventory");
     }
 
     void Move()
     {
         movement = new Vector3(hAxis, 0, vAxis).normalized;
+
+        if (!isAttackReady || ComboReady)
+            movement = Vector3.zero;
+        
+
         transform.position += movement * speed * Time.deltaTime;
         anim.SetBool("isRun", movement != Vector3.zero);
-        if (fDown)
-        {
-            
-        }
     }
 
     void Turn()
@@ -64,12 +67,29 @@ public class CharacterController : MonoBehaviour
 
     void Attack()
     {
-        if (fDown)
-        {   
-            movement = Vector3.zero;
+        attackDelay += Time.deltaTime;
+        isAttackReady = weapon.rate < attackDelay;
+        //공격을 진행할때 딜레이를 줘야된다.
+        if (fDown && isAttackReady)
+        {
             weapon.Use();
             anim.SetTrigger("isAttack");
+            attackDelay = 0;
+            ComboReady = true;
+            ComboTime += Time.deltaTime;
         }
+
+        if (ComboTime > 2f)
+        {
+            ComboReady = false;
+        }
+        if(fDown && ComboReady)
+        {
+            anim.SetTrigger("isAttack");
+            weapon.Use();
+            Invoke("UnCombo", 1f);
+        }
+
     }
 
     void Inventory()
@@ -78,5 +98,10 @@ public class CharacterController : MonoBehaviour
         {
             inventory.Open();
         }
+    }
+
+    void UnCombo()
+    {
+        ComboReady = false;
     }
 }

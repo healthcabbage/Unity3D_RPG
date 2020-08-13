@@ -39,6 +39,7 @@ public class MushState : MonoBehaviour
 
     public void DeadMush()
     {
+        this.gameObject.GetComponent<ItemDrop>().DropItem();
         Destroy(this.gameObject);
         Destroy(hpSlider);
     }

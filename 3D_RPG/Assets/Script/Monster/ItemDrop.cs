@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-    //몬스터가 사망하면 아이템이 드롭되게 설정
-    public Item item;
+    public GameObject[] items = new GameObject[2];
+
+    public GameObject pos;
+
+    private bool OneDrop;
+    void Start()
+    {
+        OneDrop = false;
+    }
+
+    public void DropItem()
+    {
+        if (!OneDrop)
+        {
+            int rand = Random.Range(0, 2);
+            Instantiate(items[rand], pos.transform.position, Quaternion.identity);
+            OneDrop = true;
+        }
+    }
 }
