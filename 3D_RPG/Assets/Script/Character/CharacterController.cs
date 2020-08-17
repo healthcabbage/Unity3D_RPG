@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CharacterController : MonoBehaviour
 
     bool fDown;
     bool idown;
+    bool zdown;
 
     bool isAttackReady = true; //다시 공격준비 완료
     bool ComboReady = false;
@@ -22,6 +24,10 @@ public class CharacterController : MonoBehaviour
     float ComboTime;
     float ComboDelay;
 
+    public Text actionText;
+    [SerializeField]
+    private Inventory inven;
+
     private void Awake()
     {
     }
@@ -29,6 +35,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        actionText.enabled = false;
     }
 
     void Update()
@@ -46,6 +53,7 @@ public class CharacterController : MonoBehaviour
         vAxis = Input.GetAxisRaw("Vertical");
         fDown = Input.GetButtonDown("Attack");
         idown = Input.GetButtonDown("Inventory");
+        zdown = Input.GetButtonDown("PickUp");
     }
 
     void Move()
@@ -67,27 +75,30 @@ public class CharacterController : MonoBehaviour
 
     void Attack()
     {
-        attackDelay += Time.deltaTime;
-        isAttackReady = weapon.rate < attackDelay;
-        //공격을 진행할때 딜레이를 줘야된다.
-        if (fDown && isAttackReady)
+        if (!inventory.activeinven)
         {
-            weapon.Use();
-            anim.SetTrigger("isAttack");
-            attackDelay = 0;
-            ComboReady = true;
-            ComboTime += Time.deltaTime;
-        }
+            attackDelay += Time.deltaTime;
+            isAttackReady = weapon.rate < attackDelay;
+            //공격을 진행할때 딜레이를 줘야된다.
+            if (fDown && isAttackReady)
+            {
+                weapon.Use();
+                anim.SetTrigger("isAttack");
+                attackDelay = 0;
+                ComboReady = true;
+                ComboTime += Time.deltaTime;
+            }
 
-        if (ComboTime > 2f)
-        {
-            ComboReady = false;
-        }
-        if(fDown && ComboReady)
-        {
-            anim.SetTrigger("isAttack");
-            weapon.Use();
-            Invoke("UnCombo", 1f);
+            if (ComboTime > 2f)
+            {
+                ComboReady = false;
+            }
+            if(fDown && ComboReady)
+            {
+                anim.SetTrigger("isAttack");
+                weapon.Use();
+                Invoke("UnCombo", 1f);
+            }
         }
 
     }
@@ -103,5 +114,35 @@ public class CharacterController : MonoBehaviour
     void UnCombo()
     {
         ComboReady = false;
+    }
+
+    void OnTriggerEnter(Collider item)
+    {
+        if (item.gameObject.tag == "Item")
+        {
+            actionText.enabled = true;
+        }
+    }
+
+    void OnTriggerStay(Collider item)
+    {
+        if (item.gameObject.tag == "Item")
+        {
+            if (zdown)
+            {
+                Debug.Log("줍기");
+                inven.AcquireItem(item.GetComponent<ItemPickUp>().item);
+                Destroy(item.gameObject);
+                actionText.enabled = false;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider item)
+    {
+        if (item.gameObject.tag == "Item")
+        {
+            actionText.enabled = false;
+        }
     }
 }

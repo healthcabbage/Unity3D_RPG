@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Night : MonoBehaviour
 {
+    //기사 캐릭터 수치, 
     public int Maxhp;
     public int hp = 500;
     public int mp = 300;
