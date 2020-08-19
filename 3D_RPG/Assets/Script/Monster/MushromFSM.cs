@@ -43,7 +43,7 @@ public class MushromFSM : MushState
     {
         EnemyAni = GetComponent<Animator>();
         ChangeState(State.Idle);
-        Mush = GameObject.Find("MushroomMonster");
+        Mush = GameObject.Find("MushroomMonster(Clone)");
         
         Invoke("Search", 0f);
     }
@@ -84,7 +84,7 @@ public class MushromFSM : MushState
 
     void IdleState()
     {
-        returnPosition = Mush.transform.position;
+        //returnPosition = Mush.transform.position;
         if (GetDistanceFromPlayer() < chaseDistnace)
         {
             ChangeState(State.Chase);
