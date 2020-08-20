@@ -109,15 +109,16 @@ MonoBehaviour:
   DemageText: {fileID: 1954952303118356973, guid: 89593462336623641a450bb80cca1873,
     type: 3}
   hudPos: {fileID: 5000122535554479734}
-  HealthBar: {fileID: 0}
+  HealthBar: {fileID: 3434904084085850255}
   HitEffect: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
   HitPos: {fileID: 1176069196}
-  Mush: {fileID: 0}
+  Mush: {fileID: 1382258774799692}
   hpSlider: {fileID: 3940583276119199137}
   currentState: 0
-  player: {fileID: 0}
-  Night: {fileID: 0}
-  meshRenderer: {fileID: 0}
+  player: {fileID: 5125071808705792817, guid: 8f02ab3396f38b1478c88f3b40466613, type: 3}
+  Night: {fileID: 160657589961505112, guid: 8f02ab3396f38b1478c88f3b40466613, type: 3}
+  meshRenderer: {fileID: 137209656802228900}
+  spawn: {fileID: 0}
 --- !u!54 &5029758672224574180
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,10 +130,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 90
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &-2754061564317842323
 BoxCollider:
@@ -696,6 +697,12 @@ PrefabInstance:
     - {fileID: 3194092033939069595, guid: 4c8fd679233b3394eaec9b906742dc38, type: 3}
     - {fileID: 3582597281805912303, guid: 4c8fd679233b3394eaec9b906742dc38, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4c8fd679233b3394eaec9b906742dc38, type: 3}
+--- !u!1 &3434904084085850255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3434904083206000267, guid: 4c8fd679233b3394eaec9b906742dc38,
+    type: 3}
+  m_PrefabInstance: {fileID: 1550945796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1364083474823290076 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1364083473679323864, guid: 4c8fd679233b3394eaec9b906742dc38,

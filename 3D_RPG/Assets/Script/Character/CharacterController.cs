@@ -131,6 +131,7 @@ public class CharacterController : MonoBehaviour
             if (zdown)
             {
                 Debug.Log("줍기");
+                Debug.Log(item.GetComponent<ItemPickUp>().item.itemName);
                 inven.AcquireItem(item.GetComponent<ItemPickUp>().item);
                 Destroy(item.gameObject);
                 actionText.enabled = false;

@@ -11,7 +11,7 @@ public class Night : MonoBehaviour
     public int mp = 300;
     public int atk = 10;
     Animator night_ani;
-    public GameObject Mush;
+    public MushState Mush;
     public Slider hpSlider;
     public Slider mpSlider;
     bool deadcheck = false;
@@ -19,7 +19,6 @@ public class Night : MonoBehaviour
     void Awake()
     {
         night_ani = GetComponent<Animator>();
-        Mush = GameObject.Find("MushroomMonster");
         hp = Maxhp;
     }
     void Update()
@@ -51,7 +50,7 @@ public class Night : MonoBehaviour
     {
         if (Enemy.gameObject.tag == "Mushroom")
         {
-            int hit = Mush.GetComponent<MushState>().atk;
+            int hit = Mush.atk;
             HitDemage(hit);
         }
     }

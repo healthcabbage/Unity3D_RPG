@@ -15,7 +15,7 @@ public class MushState : MonoBehaviour
     public Transform HitPos;
     public GameObject Mush;
     public Slider hpSlider;
-    
+
     public void MushHit(int Demage)
     {
         if (hp > 0)

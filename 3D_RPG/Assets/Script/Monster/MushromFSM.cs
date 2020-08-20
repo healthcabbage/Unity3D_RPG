@@ -17,12 +17,12 @@ public class MushromFSM : MushState
     public State currentState = State.Idle;
     Animator EnemyAni; //몬스터 애니메이터
     public Transform player; //플레이어 거리 가져오기
-    public GameObject Night;
+    public Night Night;
 
     private float chaseDistnace = 9f; //플레이어를 향해 몬스터가 추척을 시작할 거리
-    private float attackDistance = 2.5f; //플레이어가 안쪽으로 들어오게 되면 공격을 시작
+    private float attackDistance = 3f; //플레이어가 안쪽으로 들어오게 되면 공격을 시작
     private float reChaseDistance = 3f;
-    private float returnDistance = 20f;
+    private float returnDistance = 50f;
     private Vector3 returnPosition;
 
     private float rotAnglePerSecond = 360f;
@@ -32,20 +32,22 @@ public class MushromFSM : MushState
     private float attackTimer = 0;
     public SkinnedMeshRenderer meshRenderer;
     private Color originColor;
+    public MonsterSpawn spawn;
 
+    private bool onecheck = false;
+    
     void Awake()
     {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         originColor = meshRenderer.material.color;
         hp = maxhp;
+        Invoke("Search", 0.5f);
+        spawn = FindObjectOfType<MonsterSpawn>();
     }
     void Start()
     {
         EnemyAni = GetComponent<Animator>();
         ChangeState(State.Idle);
-        Mush = GameObject.Find("MushroomMonster(Clone)");
-        
-        Invoke("Search", 0f);
     }
 
     void UpdateState()
@@ -84,7 +86,7 @@ public class MushromFSM : MushState
 
     void IdleState()
     {
-        //returnPosition = Mush.transform.position;
+        returnPosition = Mush.transform.position;
         if (GetDistanceFromPlayer() < chaseDistnace)
         {
             ChangeState(State.Chase);
@@ -156,26 +158,27 @@ public class MushromFSM : MushState
     void DeadState()
     {
         moveSpeed = 0;
-        Mush.GetComponent<BoxCollider>().enabled = false;
+        this.GetComponent<BoxCollider>().enabled = false;
         EnemyAni.SetTrigger("isDead");
         Invoke("DeadMush", 2f);
+        Invoke("RespawnCheck",2f);
     }
 
     void TurnToDestination()
     {
-        Quaternion lookRotation = Quaternion.LookRotation(player.position - transform.position);
+        Quaternion lookRotation = Quaternion.LookRotation(player.position - this.transform.position);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, Time.deltaTime * rotAnglePerSecond);
+        this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, lookRotation, Time.deltaTime * rotAnglePerSecond);
     }
 
     void MoveToDestination()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, player.position, moveSpeed * Time.deltaTime);
     }
 
     float GetDistanceFromPlayer()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(this.transform.position, player.position);
         return distance;
     }
 
@@ -189,16 +192,15 @@ public class MushromFSM : MushState
 
     void Search()
     {
-        player = GameObject.Find("Ekard(Clone)").transform;
-        Night = GameObject.Find("Ekard(Clone)");
+        player = GameObject.FindWithTag("Player").transform;
     }
 
     void OnTriggerEnter(Collider weapon)
     {
         if(weapon.gameObject.tag == "Weapon")
         {
-            int hit = Night.GetComponent<Night>().atk;
-            MushHit(hit);
+            int demage = Night.atk;
+            MushHit(demage);
             DemageText.transform.LookAt(player.position);
             ChangeState(State.Demage);
         }
@@ -220,4 +222,13 @@ public class MushromFSM : MushState
         }
     }
 
+    void RespawnCheck()
+    {
+        if (onecheck == false)
+        {
+            spawn.monsterCount--;
+            Debug.Log(spawn.monsterCount);
+            onecheck = true;
+        }
+    }
 }

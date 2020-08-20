@@ -18,7 +18,7 @@ public class DamageText : MonoBehaviour
         text = GetComponent<TextMeshPro>();
         text.text = damage.ToString();
         alpha = text.color;
-        Invoke("DestroyText", destroyTime);
+        Invoke("DestroyText", 2f);
     }
 
     // Update is called once per frame
@@ -31,6 +31,6 @@ public class DamageText : MonoBehaviour
 
     void DestroyText()
     {
-        Destroy(text);
+        Destroy(this.gameObject);
     }
 }

@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_InventoryBase: {fileID: 3703125837004800060}
-  go_SlotParents: {fileID: 799313996923546374}
+  go_SlotParents: {fileID: 3703125836403452671}
 --- !u!1 &3485417229952789477
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 3703125837004800060}
+  activeinven: 0
 --- !u!65 &5965998539567922559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -536,7 +537,7 @@ GameObject:
   - component: {fileID: -125621974756395199}
   m_Layer: 8
   m_Name: Ekard
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,7 +630,7 @@ MonoBehaviour:
   hp: 0
   mp: 300
   atk: 10
-  Mush: {fileID: 1382258774799692, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
+  Mush: {fileID: 6089003172693505129, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
   hpSlider: {fileID: 3479097310468675563}
   mpSlider: {fileID: 3479097311208617806}
 --- !u!136 &-125621974756395199
@@ -3846,9 +3847,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4292371683454609884}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &799313996923546374 stripped
+--- !u!1 &3703125836403452671 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3496528983340729050, guid: 09f017235684300429470e2fed25ad67,
+  m_CorrespondingSourceObject: {fileID: 645620144707978019, guid: 09f017235684300429470e2fed25ad67,
     type: 3}
   m_PrefabInstance: {fileID: 4292371683454609884}
   m_PrefabAsset: {fileID: 0}
