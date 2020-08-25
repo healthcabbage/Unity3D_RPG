@@ -227,7 +227,6 @@ public class MushromFSM : MushState
         if (onecheck == false)
         {
             spawn.monsterCount--;
-            Debug.Log(spawn.monsterCount);
             onecheck = true;
         }
     }

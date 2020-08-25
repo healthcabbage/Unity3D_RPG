@@ -975,6 +975,7 @@ MonoBehaviour:
   Mush: {fileID: 6089003172693505129, guid: 8edb2fa3dc2112246b53357be701f37b, type: 3}
   hpSlider: {fileID: 3479097310468675563}
   mpSlider: {fileID: 3479097311208617806}
+  hptext: {fileID: 0}
 --- !u!136 &-125621974756395199
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2642,15 +2643,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_hp
       objectReference: {fileID: 0}
-    - target: {fileID: 2633294644491817744, guid: 7ec4b8fdf592935459428455e9b63336,
+    - target: {fileID: 2633294645114826740, guid: 7ec4b8fdf592935459428455e9b63336,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6a05953725450a442897308eb7564337,
-        type: 3}
-    - target: {fileID: 2633294644897967902, guid: 7ec4b8fdf592935459428455e9b63336,
-        type: 3}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2633294645114826740, guid: 7ec4b8fdf592935459428455e9b63336,
@@ -2658,7 +2653,7 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2633294645114826740, guid: 7ec4b8fdf592935459428455e9b63336,
+    - target: {fileID: 2633294646514954537, guid: 7ec4b8fdf592935459428455e9b63336,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2666,11 +2661,6 @@ PrefabInstance:
     - target: {fileID: 2633294646514954537, guid: 7ec4b8fdf592935459428455e9b63336,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2633294646514954537, guid: 7ec4b8fdf592935459428455e9b63336,
-        type: 3}
-      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -16,6 +16,9 @@ public class Night : MonoBehaviour
     public Slider hpSlider;
     public Slider mpSlider;
     bool deadcheck = false;
+    bool hprecover = false;
+    bool mprecover = false;
+    public Text hptext;
 
     void Awake()
     {
@@ -26,7 +29,9 @@ public class Night : MonoBehaviour
     void Update()
     {
         hpSlider.value = Mathf.Lerp(hpSlider.value, (float)hp / (float)Maxhp, Time.deltaTime * 5f);
+        mpSlider.value = Mathf.Lerp(mpSlider.value, (float)mp / (float)Maxmp, Time.deltaTime * 5f);
     }
+
     public void HitDemage(int Demage)
     {
         if (hp > 0)
@@ -35,7 +40,7 @@ public class Night : MonoBehaviour
             hp -= Demage;
         }
 
-        if (hp <= 0)
+        if (hp <= 0 && deadcheck)
         {
             Dead();
         }
@@ -53,14 +58,19 @@ public class Night : MonoBehaviour
     void Dead()
     {
         night_ani.SetTrigger("isDead");
+        deadcheck = false;
     }
     
     public void RecoveryHp(int recovery)
     {
         if (hp < Maxhp)
+        {
+            hprecover = true;
             hp += recovery;
+        }
         else
             Debug.Log("Hp가 가득차 사용할 수 없습니다.");
+            hprecover = false;
     }
 
     public void RecoveryMp(int re_mp)
