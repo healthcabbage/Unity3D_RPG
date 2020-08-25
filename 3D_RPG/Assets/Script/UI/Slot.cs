@@ -17,8 +17,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
     [SerializeField]
     private GameObject go_CountImage;
 
+    private ItemEffectDatabase theItemEffectDatabase;
+
     void Start()
     {
+        theItemEffectDatabase = FindObjectOfType<ItemEffectDatabase>();
         originPos = transform.position;
     }
 
@@ -67,8 +70,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         {
             if (item != null)
             {
-                Debug.Log(item.itemName + "을 사용했습니다");
-                SetSlotCount(-1);
+                theItemEffectDatabase.UseItem(item);
+                if (item.itemType == Item.ItemType.Consumables)
+                    SetSlotCount(-1);
             }
         }
     }

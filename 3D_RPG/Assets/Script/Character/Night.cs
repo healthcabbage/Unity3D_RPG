@@ -7,8 +7,9 @@ public class Night : MonoBehaviour
 {
     //기사 캐릭터 수치, 
     public int Maxhp;
-    public int hp = 500;
-    public int mp = 300;
+    public int hp;
+    public int Maxmp;
+    public int mp;
     public int atk = 10;
     Animator night_ani;
     public MushState Mush;
@@ -20,22 +21,11 @@ public class Night : MonoBehaviour
     {
         night_ani = GetComponent<Animator>();
         hp = Maxhp;
+        mp = Maxmp;
     }
     void Update()
     {
         hpSlider.value = Mathf.Lerp(hpSlider.value, (float)hp / (float)Maxhp, Time.deltaTime * 5f);
-    }
-
-    void LateUpdate()
-    {
-        if (!deadcheck)
-        {
-            if (hp <= 0)
-            {
-                StartCoroutine("DeadPlayer");
-                deadcheck = true;
-            }
-        }
     }
     public void HitDemage(int Demage)
     {
@@ -43,6 +33,11 @@ public class Night : MonoBehaviour
         {
             Debug.Log(hp);
             hp -= Demage;
+        }
+
+        if (hp <= 0)
+        {
+            Dead();
         }
     }
 
@@ -55,9 +50,24 @@ public class Night : MonoBehaviour
         }
     }
 
-    IEnumerator DeadPlayer()
+    void Dead()
     {
         night_ani.SetTrigger("isDead");
-        yield return null;
+    }
+    
+    public void RecoveryHp(int recovery)
+    {
+        if (hp < Maxhp)
+            hp += recovery;
+        else
+            Debug.Log("Hp가 가득차 사용할 수 없습니다.");
+    }
+
+    public void RecoveryMp(int re_mp)
+    {
+        if (mp < Maxmp)
+            mp += re_mp;
+        else
+            Debug.Log("Mp가 가득차 사용할 수 없습니다.");
     }
 }
