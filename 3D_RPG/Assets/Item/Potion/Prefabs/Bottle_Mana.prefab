@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33000011564412998}
   - component: {fileID: 23000010119388918}
   - component: {fileID: 95000010596400782}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bottle_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4000011383747138}
   - component: {fileID: 198000012568190312}
   - component: {fileID: 199000013901236792}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: StarsParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4827,7 +4827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012798377608}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 4000011650569256}
   - component: {fileID: 1810469309342295427}
   - component: {fileID: 1081898953100903034}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bottle_Mana
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -4920,7 +4920,7 @@ GameObject:
   - component: {fileID: 4000011123859100}
   - component: {fileID: 198000012251097790}
   - component: {fileID: 199000011921518788}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GlowParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

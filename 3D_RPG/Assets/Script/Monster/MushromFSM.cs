@@ -228,6 +228,8 @@ public class MushromFSM : MushState
         {
             spawn.monsterCount--;
             onecheck = true;
+            Night.AddCoin(100);
+            Night.AddExp(500);
         }
     }
 }
