@@ -21,7 +21,6 @@ public class Night : MonoBehaviour
 
     public int atk = 10;
     Animator night_ani;
-    public MushState Mush;
 
     bool deadcheck = false;
     bool hprecover = false;
@@ -42,6 +41,7 @@ public class Night : MonoBehaviour
     }
     void Update()
     {
+        hpSlider.value = Mathf.Lerp(hpSlider.value, (float)hp / (float)Maxhp, Time.deltaTime * 5f);
         mpSlider.value = Mathf.Lerp(mpSlider.value, (float)mp / (float)Maxmp, Time.deltaTime * 5f);
         expSlider.value = Mathf.Lerp(expSlider.value, (float)Exp / (float)MaxExp, Time.deltaTime * 5f);
         CoinText.text = Coin.ToString();
@@ -66,8 +66,13 @@ public class Night : MonoBehaviour
     {
         if (Enemy.gameObject.tag == "Mushroom")
         {
-            int hit = Mush.atk;
-            HitDemage(hit);
+            MushState Mush = Enemy.GetComponentInParent<MushState>();
+            HitDemage(Mush.atk);
+        }
+        else if (Enemy.gameObject.tag == "Enemybullet")
+        {
+            SlimeState Slime = Enemy.GetComponentInParent<SlimeState>();
+            HitDemage(Slime.atk);
         }
     }
 

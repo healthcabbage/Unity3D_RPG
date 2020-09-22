@@ -17,7 +17,6 @@ public class MushromFSM : MushState
     public State currentState = State.Idle;
     Animator EnemyAni; //몬스터 애니메이터
     public Transform player; //플레이어 거리 가져오기
-    public Night Night;
 
     private float chaseDistnace = 9f; //플레이어를 향해 몬스터가 추척을 시작할 거리
     private float attackDistance = 3f; //플레이어가 안쪽으로 들어오게 되면 공격을 시작
@@ -122,6 +121,7 @@ public class MushromFSM : MushState
         {
             if (attackTimer > attackDelay)
             {
+                //SFXSoundManager.instance.PlayAttackMush();
                 transform.LookAt(player.position);
                 EnemyAni.SetTrigger("isAttack");
 
@@ -144,13 +144,13 @@ public class MushromFSM : MushState
         if (Vector3.Distance(transform.position, returnPosition) <= 0f)
         {
             ChangeState(State.Idle);
-            Debug.Log("Return->Idle");
         }
     }
 
     void DemageState()
     {
         EnemyAni.SetTrigger("isHit");
+        //SFXSoundManager.instance.PlayHitMush();
         gameObject.GetComponent<BoxCollider>().enabled = false;
         StartCoroutine("OnHitColor");   
     }
@@ -160,6 +160,7 @@ public class MushromFSM : MushState
         moveSpeed = 0;
         this.GetComponent<BoxCollider>().enabled = false;
         EnemyAni.SetTrigger("isDead");
+        //SFXSoundManager.instance.PlayDeadMush();
         Invoke("DeadMush", 2f);
         Invoke("RespawnCheck",2f);
     }
@@ -199,8 +200,8 @@ public class MushromFSM : MushState
     {
         if(weapon.gameObject.tag == "Weapon")
         {
-            int demage = Night.atk;
-            MushHit(demage);
+            Weapon blade = weapon.GetComponent<Weapon>();
+            MushHit(blade.demage);
             DemageText.transform.LookAt(player.position);
             ChangeState(State.Demage);
         }

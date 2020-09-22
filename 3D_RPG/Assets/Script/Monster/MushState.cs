@@ -33,13 +33,14 @@ public class MushState : MonoBehaviour
 
     void CreateHitEffect()
     {
-        Instantiate(HitEffect);
+        Instantiate(HitEffect, HitEffect.transform.position, Quaternion.identity);
         HitEffect.transform.position = HitPos.position;
     }
 
     public void DeadMush()
     {
         this.gameObject.GetComponent<ItemDrop>().DropItem();
+        SFXSoundManager.instance.PlayDropItem();
         Destroy(this.gameObject);
         Destroy(hpSlider);
     }

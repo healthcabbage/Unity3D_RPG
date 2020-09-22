@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Weapon
-  - Mushroom
   - FxTemporaire
   - Item
+  - Enemy
+  - Mushroom
   layers:
   - Default
   - TransparentFX
@@ -18,11 +19,11 @@ TagManager:
   - 
   - 
   - Weapon
-  - Enemy
+  - Mushroom
   - Object
   - Item
-  - 
-  - 
+  - Enemybullet
+  - Player
   - 
   - 
   - 

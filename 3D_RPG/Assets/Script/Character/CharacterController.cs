@@ -163,6 +163,7 @@ public class CharacterController : MonoBehaviour
             if (zdown)
             {
                 Debug.Log("줍기");
+                SFXSoundManager.instance.PlayPickItem();
                 Debug.Log(Item.GetComponent<ItemPickUp>().item.itemName);
                 inven.AcquireItem(Item.GetComponent<ItemPickUp>().item);
                 Destroy(Item.gameObject);
