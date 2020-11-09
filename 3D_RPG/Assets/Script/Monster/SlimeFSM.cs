@@ -30,6 +30,8 @@ public class SlimeFSM : SlimeState
 
     private float attackDelay = 2f;
     private float attackTimer = 0f;
+    private float manaburnDelay = 3f;
+    private float manaburnTimer = 0f;
     public SkinnedMeshRenderer meshRenderer;
     private Color originColor;
     public MonsterSpawn spawn;
@@ -73,6 +75,7 @@ public class SlimeFSM : SlimeState
                 DemegeState();
                 break;
             case State.Manaburn:
+                ManaburnState();
                 break;
             case State.Dead:
                 DeadState();
@@ -128,11 +131,11 @@ public class SlimeFSM : SlimeState
             {
                 if (mp > 0)
                 {
-                //GameObject instantbullet = Instantiate(bullet, transform.position, transform.rotation);
-                transform.LookAt(player.position);
-                mp -= 10;
-                Debug.Log("attack");
-                SlimeAni.SetTrigger("isAttack");
+                    GameObject instantbullet = Instantiate(bullet, transform.position, transform.rotation);
+                    transform.LookAt(player.position);
+                    mp -= 10;
+                    Debug.Log("attack");
+                    SlimeAni.SetTrigger("isAttack");
                 }
                 else
                 {
@@ -157,7 +160,6 @@ public class SlimeFSM : SlimeState
         if (Vector3.Distance(transform.position, returnPosition) <= 0f)
         {
             ChangeState(State.Idle);
-            Debug.Log("Return->Idle");
         }
     }
 
@@ -169,13 +171,15 @@ public class SlimeFSM : SlimeState
 
     void ManaburnState()
     {
-
+        if (manaburnTimer < manaburnDelay)
+        {
+            manaburnTimer += Time.deltaTime;
+        }
     }
 
     void DeadState()
     {
         moveSpeed = 0;
-        //this.GetComponent<Rigidbody>().useGravity = false;
         this.GetComponent<BoxCollider>().enabled = false;
         SlimeAni.SetTrigger("isDead");
         Invoke("DeadSlime", 2f);

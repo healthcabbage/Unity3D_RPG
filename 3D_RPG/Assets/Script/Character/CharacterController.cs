@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     bool idown;
     bool zdown;
     bool spacedown;
+    bool escapedown;
 
     bool isAttackReady = true; //다시 공격준비 완료
     bool ComboReady = false;
@@ -58,16 +59,18 @@ public class CharacterController : MonoBehaviour
         Inventory();
         RayhitCheck();
         Action();
+        Option();
     }
 
     void GetInput()
     {
-        hAxis = manager.isAction ? 0 : Input.GetAxisRaw("Horizontal");
-        vAxis = manager.isAction ? 0 : Input.GetAxisRaw("Vertical");
-        fDown = manager.isAction ? false : Input.GetButtonDown("Attack");
-        idown = manager.isAction ? false : Input.GetButtonDown("Inventory");
-        zdown = manager.isAction ? false : Input.GetButtonDown("PickUp");
+        hAxis = manager.isAction ?  0 : manager.isPause ? 0 : Input.GetAxisRaw("Horizontal");
+        vAxis = manager.isAction ? 0  : manager.isPause ? 0 : Input.GetAxisRaw("Vertical");
+        fDown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("Attack");
+        idown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("Inventory");
+        zdown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("PickUp");
         spacedown = Input.GetButtonDown("Space");
+        escapedown = Input.GetButtonDown("Cancel");
     }
 
     void Move()
@@ -76,10 +79,14 @@ public class CharacterController : MonoBehaviour
 
         if (!isAttackReady || ComboReady)
             movement = Vector3.zero;
-        
 
         transform.position += movement * speed * Time.deltaTime;
+
         anim.SetBool("isRun", movement != Vector3.zero);
+        
+        if (movement != Vector3.zero)
+            if (!SFXSoundManager.instance.myAudio.isPlaying)
+                SFXSoundManager.instance.PlayCharacter(0);
     }
 
     void Turn()
@@ -138,6 +145,14 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    void Option()
+    {
+        if (escapedown)
+        {
+            manager.PauseGame();
+        }
+    }
+
     void RayhitCheck()
     {
         RaycastHit rayHit;
@@ -163,7 +178,7 @@ public class CharacterController : MonoBehaviour
             if (zdown)
             {
                 Debug.Log("줍기");
-                SFXSoundManager.instance.PlayPickItem();
+                SFXSoundManager.instance.PlayItem(1);
                 Debug.Log(Item.GetComponent<ItemPickUp>().item.itemName);
                 inven.AcquireItem(Item.GetComponent<ItemPickUp>().item);
                 Destroy(Item.gameObject);

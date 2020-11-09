@@ -18,6 +18,7 @@ public class Summon_Start : MonoBehaviour
             if (charactors == i)
             {
                 Instantiate(character[i], respawn.transform.position, Quaternion.identity);
+                respawn.SetActive(false);
             }
         }
     }

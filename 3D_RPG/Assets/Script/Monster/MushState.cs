@@ -40,7 +40,7 @@ public class MushState : MonoBehaviour
     public void DeadMush()
     {
         this.gameObject.GetComponent<ItemDrop>().DropItem();
-        SFXSoundManager.instance.PlayDropItem();
+        SFXSoundManager.instance.PlayItem(0);
         Destroy(this.gameObject);
         Destroy(hpSlider);
     }

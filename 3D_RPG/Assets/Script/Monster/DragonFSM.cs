@@ -7,6 +7,7 @@ public class DragonFSM : MonoBehaviour
     enum State
     {
         IDLE,
+        Chase,
         
     }
 }
