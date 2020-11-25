@@ -32,12 +32,16 @@ public class Night : MonoBehaviour
     private int MaxLevel = 10;
     public Text LevelText;
 
+    public int skillpoint = 0;
+    public Text skillpointText;
+
     void Awake()
     {
         night_ani = GetComponent<Animator>();
         hp = Maxhp;
         mp = Maxmp;
         LevelText.text = "LV : " + Level.ToString();
+        skillpointText.text = "남은 스킬 포인트 : " + skillpoint.ToString();
     }
     void Update()
     {
@@ -120,6 +124,7 @@ public class Night : MonoBehaviour
             {
                 Level++;
                 LevelText.text = "LV : " + Level.ToString();
+                levelPoint();
                 Exp = 0;
             }
         }
@@ -128,5 +133,23 @@ public class Night : MonoBehaviour
     void HpCheck()
     {
         hpSlider.value = Mathf.Lerp(hpSlider.value, (float)hp / (float)Maxhp, Time.deltaTime * 5f);
+    }
+
+    void levelPoint()
+    {
+        switch(Level)
+        {
+            case 2:
+                skillpoint += 1;
+                skillpointText.text = "남은 스킬 포인트 : " + skillpoint.ToString();
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+        }
     }
 }

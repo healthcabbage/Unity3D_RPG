@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour
     bool zdown;
     bool spacedown;
     bool escapedown;
+    bool kdown;
 
     bool isAttackReady = true; //다시 공격준비 완료
     bool ComboReady = false;
@@ -21,6 +22,7 @@ public class CharacterController : MonoBehaviour
     Vector3 movement;
     Animator anim;
     public InventoryUI inventory;
+    public SkillTreeUI skillTree;
 
     float attackDelay; //공격 딜레이
     float ComboTime;
@@ -60,17 +62,20 @@ public class CharacterController : MonoBehaviour
         RayhitCheck();
         Action();
         Option();
+        SkillTree();
     }
 
     void GetInput()
     {
-        hAxis = manager.isAction ?  0 : manager.isPause ? 0 : Input.GetAxisRaw("Horizontal");
+        hAxis = manager.isAction ? 0 : manager.isPause ? 0 : Input.GetAxisRaw("Horizontal");
         vAxis = manager.isAction ? 0  : manager.isPause ? 0 : Input.GetAxisRaw("Vertical");
         fDown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("Attack");
         idown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("Inventory");
         zdown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("PickUp");
-        spacedown = Input.GetButtonDown("Space");
-        escapedown = Input.GetButtonDown("Cancel");
+        kdown = manager.isAction ? false : manager.isPause ? false : Input.GetButtonDown("SkillTree");
+
+        spacedown = Input.GetButtonDown("Space"); //오브젝트 대화 or 조사
+        escapedown = Input.GetButtonDown("Cancel"); //옵션창
     }
 
     void Move()
@@ -114,6 +119,7 @@ public class CharacterController : MonoBehaviour
             {
                 ComboReady = false;
             }
+
             if(fDown && ComboReady)
             {
                 anim.SetTrigger("isAttack");
@@ -150,6 +156,14 @@ public class CharacterController : MonoBehaviour
         if (escapedown)
         {
             manager.PauseGame();
+        }
+    }
+
+    void SkillTree()
+    {
+        if (kdown)
+        {
+            skillTree.Open();
         }
     }
 

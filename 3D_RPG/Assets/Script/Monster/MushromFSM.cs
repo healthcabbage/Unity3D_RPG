@@ -202,6 +202,7 @@ public class MushromFSM : MushState
         {
             Weapon blade = weapon.GetComponent<Weapon>();
             MushHit(blade.demage);
+            CreateHitEffect();
             DemageText.transform.LookAt(player.position);
             ChangeState(State.Demage);
         }

@@ -24,17 +24,14 @@ public class MushState : MonoBehaviour
             hudText.GetComponent<DamageText>().damage = Demage;
             hudText.transform.position = hudPos.position;
             hudText.transform.rotation = Quaternion.Euler(0, -90, 0);
-
-            CreateHitEffect();
-
-            hp -= Demage; 
+            hp -= Demage;
         }       
     }
 
-    void CreateHitEffect()
+    public void CreateHitEffect()
     {
-        Instantiate(HitEffect, HitEffect.transform.position, Quaternion.identity);
         HitEffect.transform.position = HitPos.position;
+        Instantiate(HitEffect, HitEffect.transform.position, Quaternion.identity);
     }
 
     public void DeadMush()
