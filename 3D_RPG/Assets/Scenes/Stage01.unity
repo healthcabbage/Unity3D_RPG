@@ -2525,9 +2525,10 @@ MonoBehaviour:
   target: {fileID: 0}
   PlayerTrans: {fileID: 0}
   offset: {x: 15, y: 10, z: 0}
+  CameraOffset: {x: 0, y: 0, z: 0}
+  Cameratrans: {fileID: 801475176}
   FollowSpeed: 5
-  zoomSpeed: 0
-  rotateSpeed: 2
+  zoomSpeed: 5
 --- !u!81 &801475174
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2587,7 +2588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801475172}
   m_LocalRotation: {x: -0.09229593, y: 0.7010574, z: -0.09229593, w: -0.7010574}
-  m_LocalPosition: {x: 301.6, y: 6.4, z: 207.2}
+  m_LocalPosition: {x: 15, y: 0, z: 207.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

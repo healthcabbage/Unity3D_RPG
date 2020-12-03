@@ -6,13 +6,17 @@ public class CameraController : MonoBehaviour
 {
     public GameObject target;
     public Transform PlayerTrans;
-    int chNum = 0;
-    // Start is called before the first frame update
     public Vector3 offset;
+    public Vector3 CameraOffset;
+
+    public Transform Cameratrans;
+
     public float FollowSpeed;
+
     public float zoomSpeed;
-    public float rotateSpeed;
-    
+
+    float X_wheel;
+    float Y_wheel;
 
     void Start()
     {
@@ -22,38 +26,37 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         FollowCharacter();
+        Zoom();
     }
 
     private void Seach()
     {
-        chNum = SelectLight.characterNum;
-        if (chNum == 0)
-        {
-            target = GameObject.Find("Ekard(Clone)");
-            PlayerTrans = target.transform;
-        }
-        else if(chNum == 1)
-        {
-
-        }
+        target = GameObject.Find("Ekard(Clone)");
+        PlayerTrans = target.transform;
     }
 
-    private void FollowCharacter()
+    void FollowCharacter()
     {
-        Vector3 CamPos = PlayerTrans.position + offset;
-        transform.position = Vector3.Lerp(transform.position, CamPos, FollowSpeed * Time.deltaTime);
+        CameraOffset = PlayerTrans.position + offset;
+
+        transform.position = Vector3.Lerp(transform.position, CameraOffset, FollowSpeed * Time.deltaTime);
     }
 
-    private void Rotate()
+    void Zoom()
     {
-        if (Input.GetMouseButton(1))
-        {
-            Vector3 rot = transform.rotation.eulerAngles;
-            rot.y += Input.GetAxis("Mouse X") * rotateSpeed;
-            rot.x += -1 * Input.GetAxis("Mouse Y") * rotateSpeed;
-            Quaternion q = Quaternion.Euler(rot);
-            q.z = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, 2f);
-        }
+        X_wheel -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        Y_wheel -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+
+        if (X_wheel <= 5)
+            X_wheel = 5;
+        if (X_wheel >= 15)
+            X_wheel = 15;
+
+        if (Y_wheel <= 5)
+            Y_wheel = 5;
+        if (Y_wheel >= 10)
+            Y_wheel = 10;
+
+        offset = new Vector3(X_wheel, Y_wheel, 0);
     }
 }
