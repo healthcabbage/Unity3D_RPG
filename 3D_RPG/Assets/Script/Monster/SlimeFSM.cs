@@ -131,7 +131,7 @@ public class SlimeFSM : SlimeState
             {
                 if (mp > 0)
                 {
-                    GameObject instantbullet = Instantiate(bullet, transform.position, transform.rotation);
+                    //GameObject instantbullet = Instantiate(bullet, transform.position, transform.rotation);
                     transform.LookAt(player.position);
                     mp -= 10;
                     Debug.Log("attack");

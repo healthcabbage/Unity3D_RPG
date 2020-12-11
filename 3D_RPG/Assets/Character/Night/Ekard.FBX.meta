@@ -297,7 +297,12 @@ ModelImporter:
   - first:
       137: 13700000
     second: body
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: 456d868a1abbf65418d39b1d06f02433, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

@@ -1060,7 +1060,7 @@ BoxCollider:
   m_GameObject: {fileID: 5125071808172985437}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.016460707, z: 0.6705387}
   m_Center: {x: 0.000003830664, y: 0.000004026178, z: 0.21840496}
@@ -1077,7 +1077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  demage: 10
+  demage: 20
   rate: 1.2
   BladeArea: {fileID: 5965998539567922559}
   trailEffect: {fileID: 6969356047533618014}
@@ -1339,10 +1339,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5125071808705792817}
   - component: {fileID: 5125071808714892425}
-  - component: {fileID: 2463155640113514858}
   - component: {fileID: -9097609748086536888}
-  - component: {fileID: 160657589961505112}
   - component: {fileID: -125621974756395199}
+  - component: {fileID: 2463155640113514858}
+  - component: {fileID: 160657589961505112}
   m_Layer: 13
   m_Name: Ekard
   m_TagString: Player
@@ -1392,6 +1392,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &-9097609748086536888
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125071808705369873}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
+--- !u!136 &-125621974756395199
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125071808705369873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!114 &2463155640113514858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,22 +1443,6 @@ MonoBehaviour:
   inven: {fileID: 3092414531050994448}
   manager: {fileID: 0}
   Point: {fileID: 3484092168416953129}
---- !u!54 &-9097609748086536888
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125071808705369873}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 0
 --- !u!114 &160657589961505112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1455,20 +1469,6 @@ MonoBehaviour:
   LevelText: {fileID: 6308122695172353070}
   skillpoint: 0
   skillpointText: {fileID: 6983584327526009907}
---- !u!136 &-125621974756395199
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5125071808705369873}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &5125071808705369875
 GameObject:
   m_ObjectHideFlags: 0

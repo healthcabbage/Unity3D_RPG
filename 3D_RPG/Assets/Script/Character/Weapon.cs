@@ -32,4 +32,12 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         trailEffect.enabled = false;
     }
+
+    void OnTriggerEnter(Collider Enemy)
+    {
+        if(Enemy.gameObject.tag == "Enemy")
+        {
+            CameraAction.Instance.ShakeTime();
+        }
+    }
 }

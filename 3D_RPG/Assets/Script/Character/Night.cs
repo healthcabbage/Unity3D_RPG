@@ -68,15 +68,20 @@ public class Night : MonoBehaviour
 
     void OnTriggerEnter(Collider Enemy)
     {
-        if (Enemy.gameObject.tag == "Mushroom")
+        switch(Enemy.gameObject.tag)
         {
-            MushState Mush = Enemy.GetComponentInParent<MushState>();
-            HitDemage(Mush.atk);
-        }
-        else if (Enemy.gameObject.tag == "Enemybullet")
-        {
-            SlimeState Slime = Enemy.GetComponentInParent<SlimeState>();
-            HitDemage(Slime.atk);
+            case "Mushroom":
+            {
+                MushState Mush = Enemy.GetComponentInParent<MushState>();
+                HitDemage(Mush.atk);
+                break;
+            }
+            case "Enemybullet":
+            {
+                SlimeState Slime = Enemy.GetComponentInParent<SlimeState>();
+                HitDemage(Slime.atk);
+                break;
+            }
         }
     }
 

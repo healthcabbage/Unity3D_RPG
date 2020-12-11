@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
 
     public float zoomSpeed;
 
-    float X_wheel;
-    float Y_wheel;
+    float X_wheel = 15f;
+    float Y_wheel = 10f;
 
     void Start()
     {
@@ -47,16 +47,17 @@ public class CameraController : MonoBehaviour
         X_wheel -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         Y_wheel -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
 
-        if (X_wheel <= 5)
-            X_wheel = 5;
-        if (X_wheel >= 15)
+        if (X_wheel <= 15)
             X_wheel = 15;
+        if (X_wheel >= 30)
+            X_wheel = 30;
 
-        if (Y_wheel <= 5)
-            Y_wheel = 5;
-        if (Y_wheel >= 10)
+        if (Y_wheel <= 10)
             Y_wheel = 10;
+        if (Y_wheel >= 25)
+            Y_wheel = 25;
 
         offset = new Vector3(X_wheel, Y_wheel, 0);
     }
+
 }
