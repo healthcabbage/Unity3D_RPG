@@ -2665,7 +2665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 801475176}
-  shake: 0.5
+  shake: 1
 --- !u!1001 &803419677
 PrefabInstance:
   m_ObjectHideFlags: 0

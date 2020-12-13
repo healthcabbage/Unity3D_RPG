@@ -25,6 +25,8 @@ public class CameraAction : MonoBehaviour
     IEnumerator Shake()
     {
         camPosition_origin = cam.position;
+        
+        yield return new WaitForSeconds(1f);
 
         cam.position = 
             new Vector3(cam.position.x + Random.Range(-shake, shake), cam.position.y + Random.Range(-shake, shake),
