@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177c812524d688e448acb5ec2b190ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 20
+  maxhp: 200
   hp: 0
   atk: 100
   DemageText: {fileID: 1954952303118356973, guid: 89593462336623641a450bb80cca1873,

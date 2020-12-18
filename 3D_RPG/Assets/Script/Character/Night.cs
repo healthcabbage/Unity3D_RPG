@@ -35,6 +35,8 @@ public class Night : MonoBehaviour
     public int skillpoint = 0;
     public Text skillpointText;
 
+    public GameObject DemageImage;
+
     void Awake()
     {
         night_ani = GetComponent<Animator>();
@@ -74,6 +76,7 @@ public class Night : MonoBehaviour
             {
                 MushState Mush = Enemy.GetComponentInParent<MushState>();
                 HitDemage(Mush.atk);
+                StartCoroutine("Demage");
                 break;
             }
             case "Enemybullet":
@@ -156,5 +159,16 @@ public class Night : MonoBehaviour
             case 5:
                 break;
         }
+    }
+
+    IEnumerator Demage()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        DemageImage.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+
+        DemageImage.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
     }
 }
