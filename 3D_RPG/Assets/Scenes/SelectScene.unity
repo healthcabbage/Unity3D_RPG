@@ -466,8 +466,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "~~~ \uC124\uBA85\n\uAC80\uC744 \uC0AC\uC6A9\uD558\uB294 \uADFC\uAC70\uB9AC\uD615
-    \uCE90\uB9AD\uD130.\n\n\uC0AC\uC6A9 \uAC00\uB2A5\uD55C \uAE30\uC220"
+  m_Text: "\uCE90\uB9AD\uD130 \uC124\uBA85\n\uAC80\uC744 \uC0AC\uC6A9\uD558\uB294
+    \uADFC\uAC70\uB9AC\uD615 \uCE90\uB9AD\uD130.\n\n\uC0AC\uC6A9 \uAC00\uB2A5\uD55C
+    \uAE30\uC220"
 --- !u!222 &297219876
 CanvasRenderer:
   m_ObjectHideFlags: 0
