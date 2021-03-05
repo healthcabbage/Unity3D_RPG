@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public TalkManager talkManager;
     public GameObject talkPanel;
     public Text talkText;
+    public Text nameText;
     public GameObject scanObject;
     public bool isAction;
     public bool isPause;
@@ -27,9 +28,10 @@ public class GameManager : MonoBehaviour
 
     void Talk(int id, bool isNpc)
     {
-        string talkData = talkManager.GetTalk(id, talkIndex);
+        string nameData = talkManager.GetName(id,talkIndex);
+        string talkData = talkManager.GetTalk(id,talkIndex);
 
-        if (talkData == null)
+        if (talkData == null && nameData == null)
         {
             isAction = false;
             talkIndex = 0;
@@ -38,10 +40,12 @@ public class GameManager : MonoBehaviour
 
         if (isNpc)
         {
+            nameText.text = nameData;
             talkText.text = talkData;
         }
         else
         {
+            nameText.text = nameData;
             talkText.text = talkData;
         }
 

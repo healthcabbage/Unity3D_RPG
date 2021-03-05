@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,8 +11,8 @@ public class Item : ScriptableObject
         
     public enum ItemType
     {
-        Consumables,
-        Coin,
+        Consumables, //포션
+        Gem, //몬스터 드랍 젬
         Etc
     }  
 }
