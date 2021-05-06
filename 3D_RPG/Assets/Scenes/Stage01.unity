@@ -2375,7 +2375,7 @@ GameObject:
   - component: {fileID: 613445436}
   - component: {fileID: 613445437}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2677,7 +2677,7 @@ GameObject:
   - component: {fileID: 704705474}
   - component: {fileID: 704705473}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Talk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
