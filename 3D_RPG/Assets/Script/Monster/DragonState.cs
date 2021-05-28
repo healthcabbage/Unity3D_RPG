@@ -8,4 +8,12 @@ public class DragonState : MonoBehaviour
     public int hp; //현재 hp
 
     public GameObject DemegeText;
+
+    public GameObject Dragon;
+
+    public void DeadDragon()
+    {
+        this.gameObject.GetComponent<ItemDrop>().DropItem();
+        Destroy(this.gameObject);
+    }
 }
