@@ -7,8 +7,8 @@ public class SlimeState : MonoBehaviour
 {
     public int maxhp;
     public int hp;
-    public int mp = 50;
-    public int atk;
+    public int maxmp;
+    public int mp;
     public GameObject DemageText;
     public Transform hudPos;
     public GameObject HealthBar;
@@ -25,17 +25,14 @@ public class SlimeState : MonoBehaviour
             hudText.GetComponent<DamageText>().damage = Demage;
             hudText.transform.position = hudPos.position;
             hudText.transform.rotation = Quaternion.Euler(0, -90, 0);
-
-            CreateHitEffect();
-
             hp -= Demage;
         }
     }
 
-    void CreateHitEffect()
+    public void CreateHitEffect()
     {
-        Instantiate(HitEffect);
         HitEffect.transform.position = HitPos.position;
+        Instantiate(HitEffect, HitEffect.transform.position, Quaternion.identity);
     }
 
     public void DeadSlime()

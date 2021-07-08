@@ -198,7 +198,6 @@ public class CharacterController : MonoBehaviour
                 Destroy(Item.gameObject);
                 actionText.enabled = false;
             }
-            
         }
         else
         {

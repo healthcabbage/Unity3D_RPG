@@ -45,6 +45,7 @@ public class SlimeFSM : SlimeState
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         originColor = meshRenderer.material.color;
         hp = maxhp;
+        mp = maxmp;
         Invoke("Search", 0.5f);
         spawn = FindObjectOfType<MonsterSpawn>();
     }
@@ -131,19 +132,16 @@ public class SlimeFSM : SlimeState
             {
                 if (mp > 0)
                 {
-                    //GameObject instantbullet = Instantiate(bullet, transform.position, transform.rotation);
                     transform.LookAt(player.position);
-                    mp -= 10;
-                    Debug.Log("attack");
-                    SlimeAni.SetTrigger("isAttack");
+                    StartCoroutine("OnAttack");
+                    attackTimer = 0f;   
                 }
                 else
                 {
+                    attackTimer = 0f;
                     ChangeState(State.Manaburn);
                 }
-                attackTimer = 0f;
             }
-
             attackTimer += Time.deltaTime;
         }
     }
@@ -171,9 +169,10 @@ public class SlimeFSM : SlimeState
 
     void ManaburnState()
     {
-        if (manaburnTimer < manaburnDelay)
+        if (mp < 50)
         {
-            manaburnTimer += Time.deltaTime;
+            SlimeAni.SetTrigger("isNoAttack");
+            Invoke("Reset", 4f);
         }
     }
 
@@ -183,7 +182,7 @@ public class SlimeFSM : SlimeState
         this.GetComponent<BoxCollider>().enabled = false;
         SlimeAni.SetTrigger("isDead");
         Invoke("DeadSlime", 2f);
-        //Invoke("RespawnCheck",2f);
+        Invoke("RespawnCheck",2f);
     }
 
     void TurnToDestination()
@@ -222,6 +221,7 @@ public class SlimeFSM : SlimeState
         {
             Weapon blade = weapon.GetComponent<Weapon>();
             SlimeHit(blade.demage);
+            CreateHitEffect();
             DemageText.transform.LookAt(player.position);
             ChangeState(State.Demage);
         }
@@ -252,5 +252,22 @@ public class SlimeFSM : SlimeState
             Night.AddCoin(100);
             Night.AddExp(500);
         }
+    }
+
+    void Reset()
+    {
+        mp = maxmp;
+        attackTimer = 0f;
+        ChangeState(State.Attack);
+    }
+
+    private IEnumerator OnAttack()
+    {
+        SlimeAni.SetTrigger("isAttack");
+        yield return new WaitForSeconds(0.3f);
+        GameObject instantbullet = Instantiate(bullet, HitPos.transform.position, transform.rotation);
+        Rigidbody rigidBullet = instantbullet.GetComponent<Rigidbody>();
+        rigidBullet.velocity = transform.forward * 20;
+        mp -= 10;
     }
 }

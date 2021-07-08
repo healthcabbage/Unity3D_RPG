@@ -8,7 +8,7 @@ TagManager:
   - FxTemporaire
   - Item
   - Enemy
-  - Mushroom
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -19,7 +19,7 @@ TagManager:
   - 
   - 
   - Weapon
-  - Mushroom
+  - Enemy
   - Object
   - Item
   - Enemybullet

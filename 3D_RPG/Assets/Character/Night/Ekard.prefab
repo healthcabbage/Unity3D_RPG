@@ -6047,8 +6047,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: 0}
-  m_SizeDelta: {x: 923.0001, y: 519}
+  m_AnchoredPosition: {x: 0.000056267, y: 0}
+  m_SizeDelta: {x: 969, y: 545}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3161932664397321501
 CanvasRenderer:
@@ -6721,6 +6721,26 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 645620144275131768, guid: 09f017235684300429470e2fed25ad67,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 645620144275131768, guid: 09f017235684300429470e2fed25ad67,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 645620144275131768, guid: 09f017235684300429470e2fed25ad67,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 645620144275131768, guid: 09f017235684300429470e2fed25ad67,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
     - target: {fileID: 645620144331232522, guid: 09f017235684300429470e2fed25ad67,
         type: 3}
       propertyPath: m_Layer
@@ -6769,7 +6789,7 @@ PrefabInstance:
     - target: {fileID: 645620144703773326, guid: 09f017235684300429470e2fed25ad67,
         type: 3}
       propertyPath: m_Size
-      value: 0.8717949
+      value: 0.8717948
       objectReference: {fileID: 0}
     - target: {fileID: 645620144707978018, guid: 09f017235684300429470e2fed25ad67,
         type: 3}

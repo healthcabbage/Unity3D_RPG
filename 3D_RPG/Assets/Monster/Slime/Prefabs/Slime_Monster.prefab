@@ -490,8 +490,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhp: 60
   hp: 0
-  mp: 50
-  atk: 0
+  maxmp: 50
+  mp: 0
   DemageText: {fileID: 1954952303118356973, guid: 89593462336623641a450bb80cca1873,
     type: 3}
   hudPos: {fileID: 3318421699340676746}
@@ -504,7 +504,7 @@ MonoBehaviour:
   player: {fileID: 5125071808705792817, guid: 8f02ab3396f38b1478c88f3b40466613, type: 3}
   meshRenderer: {fileID: 137702289541837672}
   spawn: {fileID: 0}
-  bullet: {fileID: 0}
+  bullet: {fileID: 1920325297268671343, guid: 889dd67908ff48640a817f0b0074814e, type: 3}
 --- !u!1 &1989916952965676
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7540591672296006635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.375, z: 0.42}
+  m_LocalPosition: {x: 0, y: 0.592, z: 0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4023215848608658}

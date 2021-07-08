@@ -58,7 +58,6 @@ public class Night : MonoBehaviour
     {
         if (hp > 0)
         {
-            Debug.Log(hp);
             hp -= Demage;
         }
 
@@ -72,17 +71,18 @@ public class Night : MonoBehaviour
     {
         switch(Enemy.gameObject.tag)
         {
-            case "Mushroom":
+            case "Enemy":
             {
                 MushState Mush = Enemy.GetComponentInParent<MushState>();
                 HitDemage(Mush.atk);
                 StartCoroutine("Demage");
                 break;
             }
-            case "Enemybullet":
+            case "EnemyBullet":
             {
-                SlimeState Slime = Enemy.GetComponentInParent<SlimeState>();
-                HitDemage(Slime.atk);
+                Enemy_Ice enemyBullet = Enemy.GetComponentInParent<Enemy_Ice>();
+                HitDemage(enemyBullet.atk);
+                StartCoroutine("Demage");
                 break;
             }
         }
@@ -102,7 +102,6 @@ public class Night : MonoBehaviour
             hp += recovery;
         }
         else
-            Debug.Log("Hp가 가득차 사용할 수 없습니다.");
             hprecover = false;
     }
 
