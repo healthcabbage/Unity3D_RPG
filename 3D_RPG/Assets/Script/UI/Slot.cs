@@ -88,18 +88,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
                             }
                             break;
                     }
-                    // if (item.itemName == "HpPotion")
-                    //     if (theItemEffectDatabase.nightstate.hp < theItemEffectDatabase.nightstate.Maxhp)
-                    //     {
-                    //         theItemEffectDatabase.UseItem(item);
-                    //         SetSlotCount(-1);
-                    //     }
-                    // if (item.itemName == "MpPotion")
-                    //     if (theItemEffectDatabase.nightstate.mp < theItemEffectDatabase.nightstate.Maxmp)
-                    //     {
-                    //         theItemEffectDatabase.UseItem(item);
-                    //         SetSlotCount(-1);
-                    //     }
             }
         }
     }
